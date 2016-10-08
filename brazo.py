@@ -6,6 +6,7 @@ class Brazo:
 		GPIO.setup(21, GPIO.OUT)
 
 		self.servo = GPIO.PWM(21, 50)
+		self.servo.stop()
 		self.servo.start(7.5)
 
 	def mover(self, angulo):

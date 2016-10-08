@@ -13,11 +13,7 @@ class Button:
 
 if __name__ == '__main__':
 	import time
-	b1 = Button(18)
-	b2 = Button(22)
+	b1 = Button(22)
 
 	c = b1.wait(2000)
 	print('b1 - ' + str(c))
-	time.sleep(0.2)
-	c = b2.wait(2000)
-	print('b2 - ' + str(c))
