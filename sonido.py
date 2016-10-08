@@ -2,8 +2,10 @@ import time
 import os
 import requests
 import datetime
+from dateutil.parser import *
+from dateutil.tz import tzlocal
+
 sonidos =['aplay /usr/share/sounds/alsa/Side_Right.wav']
-d = datetime.datetime.now()
 
 level =0
 while True:
@@ -11,13 +13,14 @@ while True:
 	r = requests.get('http://172.17.214.24:3000/schedule')
 	print(r.json())
 	datavec=r.json()
-	now = datetime.datetime.now()
+	now = datetime.datetime.now(tzlocal())
 	for each in datavec:
-		if each['time']<		
-	#parseo json
-	os.system(sonidos[level])
-	time.sleep(2)
-	if d < now:
-		print("menor")
-	else:
-		print("mayor igual")
+		alarma = parse(each["time"])
+		
+		if alarma < now:
+			os.system(sonidos[level])
+			print("menor")
+		else:
+			print("mayor igual")
+
+		time.sleep(2)
