@@ -3,6 +3,7 @@ import sensores
 import RPi.GPIO as GPIO
 import time
 import os
+import subprocess
 import requests
 import datetime
 from dateutil.parser import *
@@ -29,21 +30,18 @@ while True:
 		alarma = parse(each["time"])
 		t =  now - alarma
 		if -30< t.total_seconds() < espero :
-			os.system(random.choice(sonidos_zen))
+			sp = subprocess.Popen(random.choice(sonidos_zen))
+			sp.wait()
 			print("apagaaaaaaaaaa")
 			if botonsuave.wait(3000) is None:
 				tts.speak(each)
-				for cada in range(3):
+				sp = subprocess.Popen(random.choice(sonidos_enojados))
+				for cada in range(24):
 					brazo.mover(0)
 					time.sleep(0.5)	
 					brazo.mover(170)
 					time.sleep(0.5)	
-				os.system(random.choice(sonidos_enojados))
-				for cada in range(3):
-					brazo.mover(0)
-					time.sleep(0.5)	
-					brazo.mover(170)
-i					time.sleep(0.5)	
+				sp.wait()
 				
 			else:
 				print("alarma apagada")
