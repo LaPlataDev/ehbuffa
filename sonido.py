@@ -19,8 +19,8 @@ while True:
 	r = requests.get('http://172.17.214.24:3000/schedule')
 	print(r.json())
 	datavec=r.json()
-	#now = datetime.datetime.now(tzlocal())
-	now =datetime.datetime(year=2016, month=10, day=8, hour=17,minute=54,tzinfo=tzlocal())
+	now = datetime.datetime.now(tzlocal())
+	#now =datetime.datetime(year=2016, month=10, day=8, hour=17,minute=54,tzinfo=tzlocal())
 	print(now )
 	for each in datavec:
 		alarma = parse(each["time"])
